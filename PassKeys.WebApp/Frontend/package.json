@@ -1,0 +1,26 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@github/webauthn-json": "^2.1.1",
+    "@mdi/font": "^7.4.47",
+    "base64url-arraybuffer": "^1.1.0",
+    "date-fns": "^3.3.1",
+    "vite-plugin-vuetify": "^2.0.1",
+    "vue": "^3.3.11",
+    "vuetify": "^3.5.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vue-tsc": "^1.8.25"
+  }
+}

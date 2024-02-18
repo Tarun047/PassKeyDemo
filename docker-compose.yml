@@ -1,0 +1,44 @@
+networks:
+  passkey-network:
+    name: passkey-network
+    driver: bridge
+
+services:
+  passkey-web-app-service:
+    container_name: passkey-web-app
+    build: .
+    restart: always
+    networks:
+      - passkey-network
+    ports:
+      - 5001:5001
+    depends_on:
+      - passkey-db-service
+      - passkey-redis-service
+  
+  passkey-db-service:
+    container_name: passkey-db
+    image: postgres:latest
+    networks:
+      - passkey-network
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: develop
+      POSTGRES_DB: PasskeysApp
+    volumes:
+      - passkey-db-data:/var/lib/postgres
+    
+  passkey-redis-service:
+    container_name: code-buddy-redis
+    image: redis:latest
+    networks:
+      - passkey-network
+    ports:
+      - 6379:6379
+    restart: always
+
+volumes:
+  passkey-db-data:
