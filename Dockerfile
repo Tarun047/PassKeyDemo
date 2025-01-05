@@ -1,4 +1,4 @@
-FROM node:latest AS frotend
+FROM node:18 AS frontend
 WORKDIR /frontend
 COPY ./PassKeys.WebApp/Frontend .
 RUN npm install
@@ -16,7 +16,7 @@ COPY ./PassKeys.Business ./PassKeys.Business
 COPY ./PassKeys.WebApp ./PassKeys.WebApp
 WORKDIR /source/PassKeys.WebApp
 RUN dotnet publish -c release -o /publish
-COPY --from=frotend /frontend/dist /publish/wwwroot
+COPY --from=frontend /frontend/dist /publish/wwwroot
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
